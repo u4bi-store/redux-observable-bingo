@@ -1,4 +1,4 @@
-export const heightArray = board => board.reduce((acc, cur, rowIndex) => {
+export const verticalArray = board => board.reduce((acc, cur, rowIndex) => {
 
     cur.forEach((e, colIndex) => {
 
