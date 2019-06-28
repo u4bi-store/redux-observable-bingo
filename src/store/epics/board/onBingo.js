@@ -14,7 +14,11 @@ export const onBingo$ = (action$, store$) =>
         tap(e => console.log(e)),
         map(({ name }) => ({
             name,
-            board : to2DArray(store$.value.board[name], 5, 5)
+            board : to2DArray(
+                        store$.value.board[name].board,
+                        store$.value.board[name].row,
+                        store$.value.board[name].col
+                    )
         })),
         map(({ name, board }) => ({
             name,

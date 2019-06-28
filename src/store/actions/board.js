@@ -1,16 +1,18 @@
 import * as type from '../constants'
 
-export const onBoard = (name, col, row) => ({
+export const onBoard = (name, row, col) => ({
     type: type.ON_BOARD,
     name,
-    col,
-    row
+    row,
+    col
 })
 
-export const setBoard = (name, board) => ({ 
+export const setBoard = (name, row, col, board) => ({ 
     type: type.SET_BOARD,
     name,
-    board
+    row,
+    col,
+    board,
 })
 
 export const onCell = (name, cell_id) => ({

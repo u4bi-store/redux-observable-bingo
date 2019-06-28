@@ -8,11 +8,15 @@ const boardState = {
 }
 
 export default createReducer(boardState, {
-    [SET_BOARD](state, { name, board }) {
+    [SET_BOARD](state, { name, row, col, board }) {
 
         return immutable(state, {
             [name] : {
-                $set : board
+                $set : {
+                    row,
+                    col,
+                    board,
+                }
             }
         })
 
@@ -21,9 +25,11 @@ export default createReducer(boardState, {
 
         return immutable(state, {
             [name] : {
-                [cell_id] : {
-                    check : {
-                        $set : true
+                board : {
+                    [cell_id] : {
+                        check : {
+                            $set : true
+                        }
                     }
                 }
             }

@@ -15,16 +15,18 @@ export const onBoard$ = action$ =>
         tap(e => console.log(e)),
         map(({ name, row, col }) => ({
             name,
+            row, 
+            col,
             board : R.pipe(
                 R.map(e => ({ num : e, check : false })),
                 R.sort(_ => 0.5 - Math.random())
             )
             (R.range(1, row * col + 1 ))
         })),
-        flatMap(({ name, board }) => 
+        flatMap(({ name, row, col, board }) => 
             concat(
                 of(clearBingo(name)),
-                of(setBoard(name, board))
+                of(setBoard(name, row, col, board))
             )
         )
     )

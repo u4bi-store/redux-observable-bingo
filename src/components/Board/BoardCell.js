@@ -32,7 +32,7 @@ class BoardCell extends Component {
 
 const mapState = (state, { name, id }) => {
 
-    const { num, check } = state.board[name] && state.board[name][id] && state.board[name][id] || { num : '', check : false }
+    const { num, check } = state.board[name] && state.board[name].board[id] || { num : '', check : false }
 
     return {
         num,
