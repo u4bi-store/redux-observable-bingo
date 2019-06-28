@@ -16,11 +16,11 @@ class BoardCell extends Component {
 
     render() {
 
-        const { name, id } = this.props
+        const { name } = this.props
         const { onCell, num, check } = this.props
 
         return (
-            <td onClick={ _ => num && onCell(name, id) } style={ { backgroundColor : check ? 'red' : '' }}>
+            <td onClick={ _ => num && onCell(name, num) } style={ { backgroundColor : check ? 'red' : '' }}>
 
                 { num }
 

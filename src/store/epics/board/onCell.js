@@ -11,7 +11,7 @@ export const onCell$ = (action$, store$) =>
     action$.pipe(
         ofType(ON_CELL),
         tap(e => console.log(e)),
-        flatMap(({ name, cell_id }) => {
+        flatMap(({ name, cell_num }) => {
 
             const player_id = store$.value.app.players[name].id
             const { turn_id } = store$.value.app
@@ -23,8 +23,22 @@ export const onCell$ = (action$, store$) =>
                 ...(
                     player_id === turn_id ?
                     [
-                        of(onCellSuccess(name, cell_id)),
-                        of(onBingo(name)),
+                        ...Object.keys(store$.value.board)
+                            .map(name => {
+
+                                let cell_id = store$.value
+                                                    .board[name]
+                                                    .board
+                                                    .reduce((acc, cur, index) => {
+                                                        cur.num === cell_num && (acc = index)
+                                                    return acc
+                                                    }, 0)
+
+                                return concat(
+                                    of(onCellSuccess(name, cell_id)),
+                                    of(onBingo(name))
+                                )
+                            }),
                         of(setTurn(next_trun_id)),
                     ]
                     :

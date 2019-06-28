@@ -15,10 +15,10 @@ export const setBoard = (name, row, col, board) => ({
     board,
 })
 
-export const onCell = (name, cell_id) => ({
+export const onCell = (name, cell_num) => ({
     type: type.ON_CELL,
     name,
-    cell_id
+    cell_num
 })
 
 export const onCellSuccess = (name, cell_id) => ({
